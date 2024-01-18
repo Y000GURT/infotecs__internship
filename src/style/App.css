@@ -1,0 +1,140 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+#root {
+    width: 100%;
+    height: 100%;
+}
+.App {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.app-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.app-wrapper__search {
+    max-width: 1200px;
+    width: 100%;
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+    border: solid 1px rgb(0, 71, 104);
+    border-radius: 2px;
+}
+
+table{
+    max-width: 1200px;
+    width: 100%;
+    border: solid 2px white;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+thead {
+    font-size: 18px;
+}
+.thead__header {
+    cursor: pointer;
+}
+.thead__img {
+    height: 10px;
+}
+th {
+    min-width: 50px;
+    padding: 10px;
+    background-color: #087bc8;
+    color: white;
+    resize:horizontal;
+    overflow:auto
+}
+tr {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #b7e2ff;
+    color: #02263e;
+}
+tr:hover {
+    transform: scale(105%);
+    background-color: #3b97ff;
+}
+td {
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.wrapper-loader {
+    margin-top: 50px;
+}
+.wrapper-loader__loader {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.368);
+    display: none;
+    z-index: 10;
+}
+.modal-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal__content {
+    height: auto;
+    width: 400px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.modal > button {
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+}
+.modal__close {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+.modal__close:hover {
+    transform: scale(120%);
+}

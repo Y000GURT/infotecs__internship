@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './style/App.css'
+import MyTable from './components/MyTable';
+import { useState } from "react";
 
 function App() {
+  const [searched, setSearched] = useState('')
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='app-wrapper'>
+      <img className='thead__img' src='./img/sortOff.png' alt=""/>
+        <input 
+          className='app-wrapper__search' 
+          placeholder='Поиск' 
+          value={searched}
+          onChange={e => setSearched(e.target.value)}/>
+
+        <MyTable searched={searched}></MyTable>
+      </div>
     </div>
   );
 }
