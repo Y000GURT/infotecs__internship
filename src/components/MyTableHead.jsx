@@ -12,6 +12,7 @@ const MyTableHead = () => {
     const [currentSortGender, setCurrentSortGender] = useState(1)
     const [currentSortAddress, setCurrentSortAddress] = useState(1)
 
+
     function sortedUsers(sortValue) {
         switch (sortValue) {
             case 'name':

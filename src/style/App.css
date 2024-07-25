@@ -4,15 +4,13 @@
     box-sizing: border-box;
 }
 html, body {
-    width: 100%;
     height: 100%;
+    font-size: 62.5%;
 }
 #root {
-    width: 100%;
     height: 100%;
 }
 .App {
-    width: 100%;
     height: 100%;
 
     display: flex;
@@ -21,26 +19,25 @@ html, body {
     justify-content: center;
 }
 .app-wrapper {
-    width: 100%;
     height: 100%;
+    width: 100%;
+    max-width: 1200px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
 }
 .app-wrapper__search {
-    max-width: 1200px;
     width: 100%;
-    font-size: 18px;
-    padding: 5px;
+    font-size: 1.8rem;
+    padding: 0.5rem;
     outline: none;
     border: solid 1px rgb(0, 71, 104);
     border-radius: 2px;
 }
 
 table{
-    max-width: 1200px;
     width: 100%;
     border: solid 2px white;
     border-collapse: collapse;
@@ -48,7 +45,7 @@ table{
     font-family: Arial, Helvetica, sans-serif;
 }
 thead {
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 .thead__header {
     cursor: pointer;
@@ -58,7 +55,7 @@ thead {
 }
 th {
     min-width: 50px;
-    padding: 10px;
+    padding: 1rem;
     background-color: #087bc8;
     color: white;
     resize:horizontal;
@@ -75,8 +72,9 @@ tr:hover {
     background-color: #3b97ff;
 }
 td {
-    padding: 5px;
+    padding: 0.5rem;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
 }
 .wrapper-loader {
     margin-top: 50px;
@@ -117,8 +115,9 @@ td {
     width: 400px;
     background-color: white;
     border-radius: 4px;
-    padding: 10px;
-
+    padding: 1rem;
+    font-size: 1.8rem;
+    
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -132,7 +131,7 @@ td {
     position: absolute;
     top: 0;
     right: 5px;
-    font-size: 25px;
+    font-size: 2.5rem;
     transition: all 0.3s ease;
 }
 .modal__close:hover {

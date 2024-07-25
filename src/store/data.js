@@ -20,8 +20,10 @@ class Data {
     async fetchUsers() {
         try {
             this.isLoading = true
+
             const response = await fetch('https://dummyjson.com/users');
             const data = await response.json();
+            
             runInAction(() => {
                 this.users = data.users;
                 this.originalUsers = [...this.users]
@@ -35,8 +37,10 @@ class Data {
     async fetchFilterUsers(searched) {
         try {
             this.isLoading = true
+
             const response = await fetch(`https://dummyjson.com/users/search?q=${searched}`);
             const data = await response.json();
+
             runInAction(() => {
                 this.users = data.users;
                 this.originalUsers = [...this.users]
