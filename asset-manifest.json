@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/infotecs-internship/static/css/main.5e1e9c50.css",
+    "main.js": "/infotecs-internship/static/js/main.e22005ef.js",
+    "index.html": "/infotecs-internship/index.html",
+    "main.5e1e9c50.css.map": "/infotecs-internship/static/css/main.5e1e9c50.css.map",
+    "main.e22005ef.js.map": "/infotecs-internship/static/js/main.e22005ef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e1e9c50.css",
+    "static/js/main.e22005ef.js"
+  ]
+}
