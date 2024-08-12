@@ -1,17 +1,12 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import imgOff from '../img/sortOff.png'
-import imgAsc from '../img/sortAsc.png'
-import imgDesc from '../img/sortDesc.png'
 
 class Data {
     users = []
-    originalUsers = []
     isLoading = false
-    // изображения вида сортировки
-    imgUrlName = imgOff
-    imgUrlAge = imgOff
-    imgUrlGender = imgOff
-    imgUrlAddress = imgOff
+    sortConfig = {
+        key: null, // название столбца
+        type: null, // тип сортировки (по убыванию/возрастанию и без сортировки)
+    }
 
     constructor() {
         makeAutoObservable(this)
@@ -26,7 +21,6 @@ class Data {
             
             runInAction(() => {
                 this.users = data.users;
-                this.originalUsers = [...this.users]
                 this.isLoading = false
             })
         } catch (error) {
@@ -43,7 +37,6 @@ class Data {
 
             runInAction(() => {
                 this.users = data.users;
-                this.originalUsers = [...this.users]
                 this.isLoading = false
             })
         } catch (error) {
@@ -51,76 +44,50 @@ class Data {
         }
     }
 
-    sortByDescending(sortValue) { // сортировка по убыванию
-        switch(sortValue) {
-            case 'name':
-                this.imgUrlName = imgDesc
-                this.imgUrlAge = imgOff
-                this.imgUrlGender = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => `${user1.firstName}${user1.lastName}${user1.maidenName}`.localeCompare(`${user2.firstName}${user2.lastName}${user2.maidenName}`))
-                break
-            case 'gender':
-                this.imgUrlGender = imgDesc
-                this.imgUrlName = imgOff
-                this.imgUrlAge = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => user1.gender.localeCompare(user2.gender))
-                break
-            case 'address':
-                this.imgUrlAddress = imgDesc
-                this.imgUrlName = imgOff
-                this.imgUrlAge = imgOff
-                this.imgUrlGender = imgOff
-                this.users.sort( (user1, user2) => `${user1.address.city}${user1.address}`.localeCompare(`${user2.address.city}${user2.address}`))
-                break
-            default:
-                this.imgUrlAge = imgDesc
-                this.imgUrlName = imgOff
-                this.imgUrlGender = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => user2.age - user1.age)
-        }
+    setSortConfig(key, type) {
+        this.sortConfig = { key, type };
+    }
+
+    get sortedUsers() {
+        const sortItems = [...this.users]
+
+        sortItems.sort((item1, item2) => {
+
+            if (this.sortConfig.key === 'fullname') {    // если сортировка по фио
+                const name1 = `${item1.firstName}${item1.lastName}${item1.maidenName}`;
+                const name2 = `${item2.firstName}${item2.lastName}${item2.maidenName}`;
+                if (name1 < name2) {
+                    return this.sortConfig.type === 'ascending' ? -1 : 1;
+                }
+                if (name1 > name2) {
+                    return this.sortConfig.type === 'ascending' ? 1 : -1;
+                }
+                return 0;
+            }
+            else if (this.sortConfig.key === 'address') {
+                const address1 = `${item1.address.city}${item1.address.address}`;
+                const address2 = `${item2.address.city}${item2.address.address}`;
+                if (address1 < address2) {
+                    return this.sortConfig.type === 'ascending' ? -1 : 1;
+                }
+                if (address1 > address2) {
+                    return this.sortConfig.type === 'ascending' ? 1 : -1;
+                }
+                return 0;
+            } else {
+                if (item1[this.sortConfig.key] < item2[this.sortConfig.key]) {
+                    return this.sortConfig.type === 'ascending' ? -1 : 1;
+                }
+                if (item1[this.sortConfig.key] > item2[this.sortConfig.key]) {
+                    return this.sortConfig.type === 'ascending' ? 1 : -1;
+                }
+                return 0;
+            }
+        })
         
+        return sortItems
     }
-    sortByAscending(sortValue) { // сортировка по возрастанию
-        switch(sortValue) {
-            case 'name':
-                this.imgUrlName = imgAsc
-                this.imgUrlAge = imgOff
-                this.imgUrlGender = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => `${user2.firstName}${user2.lastName}${user2.maidenName}`.localeCompare(`${user1.firstName}${user1.lastName}${user1.maidenName}`))
-                break
-            case 'gender':
-                this.imgUrlGender = imgAsc
-                this.imgUrlName = imgOff
-                this.imgUrlAge = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => user2.gender.localeCompare(user1.gender))
-                break
-            case 'address':
-                this.imgUrlAddress = imgAsc
-                this.imgUrlName = imgOff
-                this.imgUrlAge = imgOff
-                this.imgUrlGender = imgOff
-                this.users.sort( (user1, user2) => `${user2.address.city}${user2.address}`.localeCompare(`${user1.address.city}${user1.address}`))
-                break
-            default:
-                this.imgUrlAge = imgAsc
-                this.imgUrlName = imgOff
-                this.imgUrlGender = imgOff
-                this.imgUrlAddress = imgOff
-                this.users.sort( (user1, user2) => user1.age - user2.age)
-        }
-    }
-    sortOff() { // без сортировки
-        this.imgUrlName = imgOff
-        this.imgUrlAge = imgOff
-        this.imgUrlGender = imgOff
-        this.imgUrlAddress = imgOff
-        this.users = [...this.originalUsers]
-    }
+
 }
 const data = new Data()
 export default data

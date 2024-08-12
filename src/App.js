@@ -7,14 +7,14 @@ function App() {
   const [searched, setSearched] = useState('')
 
   return (
-    <div className="App">
-      <div className='app-wrapper'>
-      <img className='thead__img' src='./img/sortOff.png' alt=""/>
+    <div className="app-wrapper">
+      <div className='app'>
         <input 
-          className='app-wrapper__search' 
+          className='app__search' 
           placeholder='Поиск' 
           value={searched}
-          onChange={e => setSearched(e.target.value)}/>
+          onChange={e => setSearched(e.target.value)}
+        />
 
         <MyTable searched={searched}></MyTable>
       </div>

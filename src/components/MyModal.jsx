@@ -1,37 +1,22 @@
 import React from 'react'
+import { createPortal } from 'react-dom';
 
-const MyModal = ({visible, setModal, user}) => {
+const MyModal = ({visible, setClose, children}) => {
 
-    const modalClass = ['modal']
-
-
-    if (visible) {
-        modalClass.push('modal-active')
+    if (!visible) {
+        return null
     }
-    return ( 
-        <div className={modalClass.join(' ')} onClick={() => setModal(false)}>
-            <button className='modal__close' onClick={() => setModal(false)}>&#10006;</button>
+
+    return createPortal( 
+
+        <div className='modal__wrapper' onClick={() => setClose(false)}>
             <div className='modal__content' onClick={(e) => e.stopPropagation()}>
-                <div className="modal__param">
-                    <p>ФИО:</p>
-                    <p>Возраст:</p>
-                    <p>Адрес:</p>
-                    <p>Рост:</p>
-                    <p>Вес:</p>
-                    <p>Телефон:</p>
-                    <p>Почта:</p>
-                </div>
-                <div className="modal__value">
-                    <p>{ user?.firstName + ' ' + user?.lastName + ' ' + user?.maidenName }</p>
-                    <p>{ user?.age } </p>
-                    <p>{ user?.address?.city + ', ' + user?.address?.address }</p>
-                    <p>{ user?.height }</p>
-                    <p>{ user?.weight }</p>
-                    <p>{ user?.phone }</p>
-                    <p>{ user?.email }</p>
-                </div>
+                <button className='modal__close' onClick={() => setClose(false)}>&#10006;</button>
+                { children }
             </div>
         </div>
+        ,
+        document.body
      );
 }
  

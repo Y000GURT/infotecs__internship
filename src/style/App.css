@@ -10,26 +10,26 @@ html, body {
 #root {
     height: 100%;
 }
-.App {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+button {
+    outline: 0;
+    border: 0;
+    background-color: transparent;
 }
 .app-wrapper {
     height: 100%;
-    width: 100%;
-    max-width: 1200px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
 }
-.app-wrapper__search {
+.app {
+    height: 100%;
     width: 100%;
+    max-width: 1200px; 
+}
+.app__search {
+    width: 100%;
+    margin-top: 1rem;
     font-size: 1.8rem;
     padding: 0.5rem;
     outline: none;
@@ -38,18 +38,54 @@ html, body {
 }
 
 table{
+    margin-top: 1rem;
     width: 100%;
     border: solid 2px white;
     border-collapse: collapse;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-}
-thead {
     font-size: 1.8rem;
 }
 .thead__header {
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    column-gap: 0.5rem;
 }
+
+.thead__header-ascending::after {
+    content: '';
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    background-image: url(../img/sortAsc.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.thead__header-descending::after {
+    content: '';
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    background-image: url(../img/sortDesc.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.thead__header-off::after {
+    content: '';
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    background-image: url(../img/sortOff.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .thead__img {
     height: 10px;
 }
@@ -95,43 +131,40 @@ td {
   100% { transform: rotate(360deg); }
 }
 
-.modal {
+.modal__wrapper {
     position: absolute;
     left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.368);
-    display: none;
     z-index: 10;
-}
-.modal-active {
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .modal__content {
     height: auto;
     width: 400px;
     background-color: white;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 1.5rem;
     font-size: 1.8rem;
-    
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-.modal > button {
-    outline: 0;
-    border: 0;
-    background-color: transparent;
-}
+
 .modal__close {
     position: absolute;
     top: 0;
     right: 5px;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    color: #858585;
     transition: all 0.3s ease;
 }
 .modal__close:hover {
