@@ -7,7 +7,7 @@ import useModal from '../hooks/useModal.js';
 import { observer } from 'mobx-react-lite';
 import { useState, useEffect } from "react";
 
-const MyTable = observer( ({searched}) => {
+const MyTable = observer( ({ searched }) => {
 
     const [isShowing, toggleShow] = useModal()
     const [currentUser, setCurrentUser] = useState({})
